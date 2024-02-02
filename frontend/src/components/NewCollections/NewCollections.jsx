@@ -10,7 +10,7 @@ const NewCollections = () => {
         <hr />
         <div className="collections">
             {
-              new_collection.map((item)=> <Items props={item} />)
+              new_collection.map((item)=> <Items props={item} key={item.id} />)
             }
           
         </div>
