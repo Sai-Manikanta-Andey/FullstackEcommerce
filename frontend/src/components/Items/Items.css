@@ -54,9 +54,12 @@
 
 @media (max-width:1024px){
     .item{
-        width: 170px;
+        width: 160px;
        
     }
+        .item img {
+            width: 160px;
+        }
     
 }
 
@@ -71,6 +74,9 @@
     }
 
     .item-price-old {
+        font-size: .8rem;
+    }
+    .item-price-new {
         font-size: .8rem;
     }
 }
