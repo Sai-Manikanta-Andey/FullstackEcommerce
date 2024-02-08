@@ -1,17 +1,17 @@
-.shopcategory-banner{
+.shopcategory-banner {
     display: block;
     margin: 30px auto;
-    width:82% ;
+    width: 82%;
 }
 
-.shopcategory-indexSort{
+.shopcategory-indexSort {
     display: flex;
     margin: 0 170px;
     justify-content: space-between;
     align-items: center;
 }
 
-.shopcategory-sort{
+.shopcategory-sort {
     padding: 10px 20px;
     border-radius: 40px;
     border: 1px solid #888;
@@ -21,15 +21,15 @@
     font-weight: 600;
 }
 
-.shopcategory-products{
+.shopcategory-products {
     display: grid;
-    grid-template-columns:repeat(4,1fr) ;
+    grid-template-columns: repeat(4, 1fr);
     margin: 20px 140px;
     gap: 10px;
     row-gap: 80px;
 }
 
-.shopcategory-loadmore{
+.shopcategory-loadmore {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -41,4 +41,85 @@
     color: #787878;
     font-size: 1.1rem;
     font-weight: 500;
+}
+
+@media (max-width:1280px) {
+    .shopcategory-banner {
+        margin: 20px auto;
+        width: 90%;
+    }
+
+    .shopcategory-indexSort {
+        width: 90%;
+        margin: auto;
+    }
+
+    .shopcategory-sort {
+        padding: 5px 10px;
+
+    }
+
+    .shopcategory-indexSort p {
+        font-size: .8rem;
+    }
+
+    .shopcategory-products {
+        width: 90%;
+        margin: 10px auto;
+        row-gap: 40px;
+    }
+
+    .shopcategory-products .item {
+        margin: auto;
+    }
+
+    .shopcategory-loadmore {
+        margin: 100px auto;
+        width: 200px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width:800px) {
+    .shopcategory-banner {
+
+        width: 95%;
+    }
+
+    
+
+    .shopcategory-products {
+        width: 95%;
+      
+    }
+
+    
+}
+
+@media (max-width:500px) {
+    .shopcategory-banner {
+
+        width: 95%;
+    }
+
+
+
+    .shopcategory-products {
+        width: 95%;
+
+    }
+    .shopcategory-loadmore{
+        width: 150px;
+        height: 40px;
+        margin: 60px auto;
+
+    }
+
+
+}
+
+@media (max-width:500px){
+    .shopcategory-products{
+        grid-template-columns: 1fr 1fr;
+    }
 }
