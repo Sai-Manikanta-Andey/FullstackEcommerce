@@ -54,3 +54,129 @@
     font-size: 1rem;
     cursor: pointer;
 }
+
+@media (max-width:1280px){
+    .newsletter{
+        padding: 0px 80px;
+        margin-bottom: 120px;
+        gap: 20px;
+    }
+
+    .newsletter h1{
+        font-size: 2rem;
+    }
+
+    .newsletter p{
+        font-size: 1rem;
+    }
+
+    .newsletter div{
+        width: 600px;
+        height: 60px;
+    }
+
+    .newsletter div input {
+        width: 400px;
+    }
+    .newsletter div button{
+        width: 160px;
+        height: 62px;
+    }
+}
+
+@media (max-width:1024px) {
+    .newsletter {
+       
+        margin-bottom: 60px;
+      
+    }
+
+    .newsletter h1 {
+        font-size: 1.8rem;
+        text-align: center;
+    }
+
+    .newsletter p {
+        font-size: 1rem;
+    }
+
+    .newsletter div {
+        width: 500px;
+        height: 50px;
+    }
+
+    .newsletter div input {
+        width: 300px;
+    }
+
+    .newsletter div button {
+        width: 160px;
+        height: 54px;
+    }
+}
+
+@media (max-width:800px) {
+    .newsletter {
+        height: 35vh;
+        margin-bottom: 30px;
+
+    }
+
+    .newsletter h1 {
+        font-size: 1.4rem;
+        text-align: center;
+    }
+
+    .newsletter p {
+        font-size: 1rem;
+    }
+
+    .newsletter div {
+        width: 400px;
+        height: 40px;
+    }
+
+    .newsletter div input {
+        width: 200px;
+    }
+
+    .newsletter div button {
+        width: 140px;
+        height: 40px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width:500px) {
+    .newsletter {
+        width: 100%;
+        margin-bottom: 30px;
+        padding: 0;
+        gap: 15px;
+    }
+
+    .newsletter h1 {
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    .newsletter p {
+        font-size: .8rem;
+    }
+
+    .newsletter div {
+        width: 320px;
+        height: 40px;
+    }
+
+    .newsletter div input {
+        width: 320px;
+    }
+
+    .newsletter div button {
+        padding: .2rem .4rem;
+        width: 120px;
+        height: 40px;
+        font-size: .8rem;
+    }
+}
