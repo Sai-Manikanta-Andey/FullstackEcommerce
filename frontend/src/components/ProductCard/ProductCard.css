@@ -207,9 +207,10 @@
     .productcard-right-sizes {
         margin-top: 10px 0px;
     }
-    .productcard-right-sizes div{
+
+    .productcard-right-sizes div {
         padding: 10px 16px;
-        font-size:.8rem ;
+        font-size: .8rem;
     }
 
     .productcard-right button {
@@ -221,5 +222,141 @@
     .productcard-right-category {
         margin-top: 5px;
         font-size: .8rem;
+    }
+}
+
+@media (max-width:800px) {
+    .productcard {
+        margin: 0px 10px;
+    }
+
+    .productcard-left {
+        gap: 2px;
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+
+    .productcard-img-list {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .productcard-img-list img {
+        height: 70px;
+    }
+
+    .productcard-main-img {
+        width: auto;
+        height: 320px;
+    }
+
+    .productcard-right h1 {
+        font-size: 1.1rem;
+    }
+
+    .productcard-right-star img {
+        width: 13px;
+    }
+
+    .productcard-right-description {
+        font-size: .8rem;
+    }
+
+    .productcard-right-size h1 {
+
+        margin-top: 10px;
+    }
+
+    .productcard-right-sizes {
+        margin-top: 10px;
+        gap: 5px;
+    }
+
+    .productcard-right-sizes div {
+        padding: 8px 14px;
+        font-size: .8rem;
+    }
+
+    .productcard-right button {
+        width: 180px;
+
+    }
+
+    .productcard-right-category {
+        margin-top: 5px;
+        font-size: .8rem;
+    }
+}
+
+@media (max-width:500px) {
+    .productcard {
+        flex-direction: column;
+        margin: 0px 10px;
+    }
+
+    .productcard-left {
+        gap: 10px;
+        flex-direction: row;
+        margin: auto;
+    }
+
+
+
+    .productcard-img-list {
+        flex-direction: column;
+        gap: 8px;
+
+    }
+
+    .productcard-img-list img {
+        height: 78px;
+    }
+
+    .productcard-main-img {
+        width: auto;
+        height: 330px;
+    }
+
+    .productcard-right {
+        margin: 5px;
+    }
+
+    .productcard-right h1 {
+        margin-top: 15px;
+        font-size: 1.4rem;
+        font-weight: 500;
+    }
+
+    .productcard-right-star img {
+        width: 15px;
+    }
+
+    .productcard-right-description {
+        font-size: .8rem;
+    }
+
+    .productcard-right-size h1 {
+
+        margin-top: 10px;
+    }
+
+    .productcard-right-sizes {
+        margin-top: 20px 0px;
+        gap: 10px;
+    }
+
+    .productcard-right-sizes div {
+        padding: 10px 16px;
+        font-size: .8rem;
+    }
+
+    .productcard-right button {
+        width: 200px;
+        padding: 12px 6px;
+
+    }
+    .productcard-right-category {
+
+        font-size: 1rem;
     }
 }
