@@ -108,6 +108,25 @@ app.post('/addproduct',async (req,res)=>{
     })
 })
 
+//creating api endpoint for deleting a product
+
+app.post('/removeproduct' ,async (req,res)=>{
+    await Product.findOneAndDelete({id:req.body.id})
+    console.log("removed");
+    res.json({
+        success:true,
+        name:req.body.name
+    })
+})
+
+
+//creating api endpoint for getting all  products
+app.get('/allproducts',async (req,res)=>{
+    let products = await Product.find({})
+    console.log('all products fetched');
+    res.send(products)
+})
+
 app.listen(port,(error)=>{
     if(!error){
         console.log("Server running on port"+port);
