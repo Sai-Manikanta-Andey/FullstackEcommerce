@@ -60,3 +60,12 @@
     padding: .8rem .6rem;
     text-align: center;
 }
+
+@media (max-width:800px){
+    .add-product{
+        width: auto;
+        padding: 30px;
+        margin: 20px;
+        
+    }
+}
