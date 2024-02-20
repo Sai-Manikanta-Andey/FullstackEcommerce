@@ -25,7 +25,13 @@ const Navbar = () => {
         <img src={logo} alt="logo" />
         <p>CLOTHER</p>
       </div>
-      <img className='nav-dropdown' src={downarrow} alt="" onClick={dropDown} width={25} />
+      <img
+        className="nav-dropdown"
+        src={downarrow}
+        alt=""
+        onClick={dropDown}
+        width={25}
+      />
       <ul ref={menuRef} className="nav-menu">
         <li onClick={() => setMenu("shop")}>
           <Link style={{ textDecoration: "none" }} to="/">
@@ -52,9 +58,20 @@ const Navbar = () => {
         </li>
       </ul>
       <div className="nav-login-cart">
-        <Link style={{ textDecoration: "none" }} to="/login">
-          <button>Login</button>
-        </Link>
+        {localStorage.getItem("auth-token") ? (
+          <button
+            onClick={() => {
+              localStorage.removeItem("auth-token");
+              window.location.replace("/");
+            }}
+          >
+            Logout
+          </button>
+        ) : (
+          <Link style={{ textDecoration: "none" }} to="/login">
+            <button>Login</button>
+          </Link>
+        )}
 
         <Link style={{ textDecoration: "none" }} to="/cart">
           <img src={cart_icon} alt="cart" />

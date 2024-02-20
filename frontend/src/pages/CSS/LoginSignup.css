@@ -53,11 +53,13 @@
     color:#5c5c5c ;
     font-size: 1.1rem;
     font-weight: 400;
+    
 }
 
 .loginsignup-login span{
     color: #ff4141;
     font-weight:500 ;
+    cursor: pointer;
 }
 
 .loginsignup-agree{
