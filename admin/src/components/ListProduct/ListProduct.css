@@ -49,8 +49,8 @@
 .category {
     margin-left: -15px;
 }
-.list-product-allproducts{
-    overflow-y: auto;
+.listproduct-allproducts{
+    overflow-y: scroll;
 }
 
 @media (max-width:800px) {
