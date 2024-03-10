@@ -2,22 +2,23 @@ const port = 4000;
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
+const dotenv = require("dotenv")
 const jwt = require("jsonwebtoken");
 const multer = require("multer");
 const path = require("path");
 const cors = require("cors");
 
-
+dotenv.config()
 app.use(express.json());
 const corsOptions = {
   origin: "http://localhost:5173",
 };
 app.use(cors(corsOptions));
-
+dotenv.config()
 
 //Database connection with MongoDB
 mongoose.connect(
-  "mongodb+srv://saipc0007:AG1SMK007@cluster0.xslsgb9.mongodb.net/ecommerce"
+  `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.xslsgb9.mongodb.net/ecommerce`
 );
 
 //API creation
