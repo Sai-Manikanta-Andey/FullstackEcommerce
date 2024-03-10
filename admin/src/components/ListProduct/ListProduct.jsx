@@ -6,10 +6,10 @@ const ListProduct = () => {
   const [allProducts, setallProducts] = useState([]);
 
   const fetchProducts = async () => {
-    await fetch("http://localhost:4000/allproducts")
+    await fetch("https://shy-worm-stole.cyclic.app//allproducts")
       .then((res) => res.json())
       .then((data) => {
-        setallProducts(data)
+        setallProducts(data);
         console.log(data);
       });
   };
@@ -18,18 +18,17 @@ const ListProduct = () => {
     fetchProducts();
   }, []);
 
-  const removeProduct= async (id)=>{
-    await fetch("http://localhost:4000/removeproduct", {
+  const removeProduct = async (id) => {
+    await fetch("https://shy-worm-stole.cyclic.app//removeproduct", {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body:JSON.stringify({id:id})
-      
+      body: JSON.stringify({ id: id }),
     });
-    await fetchProducts()
-  }
+    await fetchProducts();
+  };
 
   return (
     <div className="list-product">
@@ -63,7 +62,10 @@ const ListProduct = () => {
                 <img
                   className="listproduct-remove-icon"
                   src={cross_icon}
-                  alt="" onClick={()=>{removeProduct(product.id)}}
+                  alt=""
+                  onClick={() => {
+                    removeProduct(product.id);
+                  }}
                 />
               </div>
               <hr />

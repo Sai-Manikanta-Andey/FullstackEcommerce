@@ -1,55 +1,63 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 import "./Addproduct.css";
-import upload_area from '../../assets/upload_area.svg'
+import upload_area from "../../assets/upload_area.svg";
 
 const Addproduct = () => {
-  const [image,setImage]=useState(false)
-  const [productDetails,setproductDetails] = useState({
-    name:"",
-    image:"",
-    category:"women",
-    new_price:"",
-    old_price:""
-  })
+  const [image, setImage] = useState(false);
+  const [productDetails, setproductDetails] = useState({
+    name: "",
+    image: "",
+    category: "women",
+    new_price: "",
+    old_price: "",
+  });
 
-  const imageHandler=(e)=>{
-    setImage(e.target.files[0])
-  }
+  const imageHandler = (e) => {
+    setImage(e.target.files[0]);
+  };
 
-  const changeHandler = (e)=>{
-    setproductDetails({...productDetails,[e.target.name]:e.target.value})
-  }
+  const changeHandler = (e) => {
+    setproductDetails({ ...productDetails, [e.target.name]: e.target.value });
+  };
 
-  const addProduct =async (e)=>{
+  const addProduct = async (e) => {
     console.log(productDetails);
     let responseData;
-    let product = productDetails
-    let formData= new FormData()
-    formData.append('product',image)
+    let product = productDetails;
+    let formData = new FormData();
+    formData.append("product", image);
 
-    await fetch('http://localhost:4000/upload',{
-      method:'POST',
-      headers:{
-        Accept:'application/json'
+    await fetch("https://shy-worm-stole.cyclic.app//upload", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
       },
-      body:formData
-    }).then((res)=> res.json()).then((data)=>{responseData = data})
-    
-    if(responseData.success){
-      product.image= responseData.image_url
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        responseData = data;
+      });
+
+    if (responseData.success) {
+      product.image = responseData.image_url;
       console.log(product);
-      await fetch("http://localhost:4000/addproduct",{
-        method:'POST',
-        headers:{
-          Accept:'application/json',
-         'Content-Type':'application/json',
+      await fetch("https://shy-worm-stole.cyclic.app//addproduct", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
-        body:JSON.stringify(product)
-      }).then((res)=> res.json()).then((data)=>{
-        (data.success?alert("Product Successfully Added"):alert("Failed To Add"))
+        body: JSON.stringify(product),
       })
+        .then((res) => res.json())
+        .then((data) => {
+          data.success
+            ? alert("Product Successfully Added")
+            : alert("Failed To Add");
+        });
     }
-  }
+  };
 
   return (
     <div className="add-product">
@@ -114,9 +122,11 @@ const Addproduct = () => {
           hidden
         />
       </div>
-      <div onClick={addProduct} className="addproduct-btn">ADD</div>
+      <div onClick={addProduct} className="addproduct-btn">
+        ADD
+      </div>
     </div>
   );
-}
+};
 
-export default Addproduct
+export default Addproduct;

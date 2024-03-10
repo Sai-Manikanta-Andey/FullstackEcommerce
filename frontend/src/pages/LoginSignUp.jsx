@@ -1,23 +1,23 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 import "./CSS/LoginSignup.css";
 
 const LoginSignUp = () => {
-  const [state,setState]= useState("Login")
-  const [formData,setformData]=useState({
-    username:"",
-    password:"",
-    email:""
-  })
+  const [state, setState] = useState("Login");
+  const [formData, setformData] = useState({
+    username: "",
+    password: "",
+    email: "",
+  });
 
-  const formDataHandler=(e)=>{
-    setformData({...formData,[e.target.name]:e.target.value})
-  }
+  const formDataHandler = (e) => {
+    setformData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-  const login = async ()=>{
+  const login = async () => {
     console.log("login");
     console.log(formData);
     let responseData;
-    await fetch("http://localhost:4000/login", {
+    await fetch("https://shy-worm-stole.cyclic.app//login", {
       method: "POST",
       headers: {
         Accept: "application/form-data",
@@ -33,28 +33,29 @@ const LoginSignUp = () => {
     } else {
       alert(responseData.error);
     }
-  }
+  };
 
-  const signUp = async ()=>{
+  const signUp = async () => {
     console.log("signup");
     console.log(formData);
-    let responseData ;
-    await fetch("http://localhost:4000/signup",{
-      method:"POST",
-      headers:{
-        Accept:'application/form-data',
-        'Content-Type':'application/json'
+    let responseData;
+    await fetch("https://shy-worm-stole.cyclic.app//signup", {
+      method: "POST",
+      headers: {
+        Accept: "application/form-data",
+        "Content-Type": "application/json",
       },
-      body:JSON.stringify(formData)
-    }).then((res)=>res.json()).then((data)=> responseData= data)
-    if(responseData.success){
-      localStorage.setItem("auth-token",responseData.token)
-      window.location.replace('/')
-      
-    }else{
-      alert(responseData.error)
+      body: JSON.stringify(formData),
+    })
+      .then((res) => res.json())
+      .then((data) => (responseData = data));
+    if (responseData.success) {
+      localStorage.setItem("auth-token", responseData.token);
+      window.location.replace("/");
+    } else {
+      alert(responseData.error);
     }
-  }
+  };
 
   return (
     <div className="loginsignup">
@@ -62,14 +63,38 @@ const LoginSignUp = () => {
         <h1>{state}</h1>
         <div className="loginsignup-fields">
           {state === "Sign Up" ? (
-            <input type="text" placeholder="Name" name='username' onChange={formDataHandler} value={formData.username} />
+            <input
+              type="text"
+              placeholder="Name"
+              name="username"
+              onChange={formDataHandler}
+              value={formData.username}
+            />
           ) : (
             <></>
           )}
-          <input type="email" placeholder="Email" name='email'  value={formData.email} onChange={formDataHandler}/>
-          <input type="password" placeholder="Password" name='password' value={formData.password} onChange={formDataHandler} />
+          <input
+            type="email"
+            placeholder="Email"
+            name="email"
+            value={formData.email}
+            onChange={formDataHandler}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            name="password"
+            value={formData.password}
+            onChange={formDataHandler}
+          />
         </div>
-        <button onClick={()=> {state==="Login"? login():signUp()}}>Continue</button>
+        <button
+          onClick={() => {
+            state === "Login" ? login() : signUp();
+          }}
+        >
+          Continue
+        </button>
         {state === "Sign Up" ? (
           <p className="loginsignup-login">
             Already have an account?{" "}
@@ -89,6 +114,6 @@ const LoginSignUp = () => {
       </div>
     </div>
   );
-}
+};
 
-export default LoginSignUp
+export default LoginSignUp;
