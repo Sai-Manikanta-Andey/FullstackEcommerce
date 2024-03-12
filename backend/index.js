@@ -1,20 +1,23 @@
-const port = 4000;
+const port = 4000 || 8000;
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const dotenv = require("dotenv")
+const dotenv = require("dotenv");
 const jwt = require("jsonwebtoken");
 const multer = require("multer");
 const path = require("path");
 const cors = require("cors");
 
-dotenv.config()
+dotenv.config();
 app.use(express.json());
 const corsOptions = {
-  origin: "http://localhost:5173",
+  origin: [
+    "http://localhost:5173",
+    "https://fullstack-ecommerce-sooty.vercel.app/",
+  ],
 };
 app.use(cors(corsOptions));
-dotenv.config()
+dotenv.config();
 
 //Database connection with MongoDB
 mongoose.connect(
@@ -46,7 +49,7 @@ app.use("/images", express.static("upload/images"));
 app.post("/upload", upload.single("product"), (req, res) => {
   res.json({
     success: 1,
-    image_url: `https://shy-worm-stole.cyclic.app/images/${req.file.filename}`,
+    image_url: `https://tender-plum-greyhound.cyclic.app/images/${req.file.filename}`,
   });
 });
 
@@ -147,15 +150,17 @@ const Users = mongoose.model("Users", {
   },
   date: {
     type: Date,
-    default:Date.now
+    default: Date.now,
   },
 });
 
 //Creating an endpoint for user
-app.post('/signup',async (req,res)=>{
-  let check = await Users.findOne({email:req.body.email})
-  if(check){
-    return res.status(400).json({success:false,error:'User already exist'})
+app.post("/signup", async (req, res) => {
+  let check = await Users.findOne({ email: req.body.email });
+  if (check) {
+    return res
+      .status(400)
+      .json({ success: false, error: "User already exist" });
   }
   let cart = {};
 
@@ -178,77 +183,80 @@ app.post('/signup',async (req,res)=>{
   };
   const token = jwt.sign(data, "secret_ecom");
   res.json({ success: true, token });
-})
+});
 
 //creating endpoint for user login
-app.post('/login',async (req,res)=>{
-  let user = await Users.findOne({email:req.body.email})
-  if(user){
-    const passCompare = req.body.password === user.password
-    if(passCompare){
+app.post("/login", async (req, res) => {
+  let user = await Users.findOne({ email: req.body.email });
+  if (user) {
+    const passCompare = req.body.password === user.password;
+    if (passCompare) {
       const data = {
-        user:{
-          id:user.id
-        }
-      }
-      const token = jwt.sign(data,'secret_ecom')
-      res.json({success:true,token})
+        user: {
+          id: user.id,
+        },
+      };
+      const token = jwt.sign(data, "secret_ecom");
+      res.json({ success: true, token });
+    } else {
+      res.json({ success: false, error: "wrong password" });
     }
-    else{
-      res.json({success:false,error:"wrong password"})
-    }
-  }else{
-    res.json({success:false,error:"Wrong email Id"})
+  } else {
+    res.json({ success: false, error: "Wrong email Id" });
   }
-})
+});
 
 //creating endpoint for new collection data
 
-app.get('/newcollections',async (req,res)=>{
-  let products = await Product.find({})
-  let newcollection = products.slice(1).slice(-8)
+app.get("/newcollections", async (req, res) => {
+  let products = await Product.find({});
+  let newcollection = products.slice(1).slice(-8);
   console.log("newcollection fetched");
-  res.send(newcollection)
-})
+  res.send(newcollection);
+});
 
 //creating an endpoint for popular in women
 app.get("/popularinwomen", async (req, res) => {
-  let products = await Product.find({category:"women"});
-  let popular_in_women = products.slice(0,4);
+  let products = await Product.find({ category: "women" });
+  let popular_in_women = products.slice(0, 4);
   console.log("popular in women fetched");
   res.send(popular_in_women);
 });
 
 //creating middleware to fetch user
-const fetchUser= async (req,res,next)=>{
-  const token = req.header('auth-token')  
-  if(!token){
-    res.status(401).send({error:"Please authenticate using valid token"})
-  }else{
-    try{
-      const data =jwt.verify(token,"secret_ecom")
+const fetchUser = async (req, res, next) => {
+  const token = req.header("auth-token");
+  if (!token) {
+    res.status(401).send({ error: "Please authenticate using valid token" });
+  } else {
+    try {
+      const data = jwt.verify(token, "secret_ecom");
       req.user = data.user;
-      next()
-    }catch(error){
-      res.status(401).send({error:'Please authenticate using a valid token'})
+      next();
+    } catch (error) {
+      res
+        .status(401)
+        .send({ error: "Please authenticate using a valid token" });
     }
   }
-}
+};
 
-
-//creating an endpoint for adding products to cart 
-app.post('/addtocart',fetchUser,async (req,res)=>{
-  let userData = await Users.findOne({_id:req.user.id})
-  userData.cartData[req.body.itemId]+=1
-  await Users.findByIdAndUpdate({_id:req.user.id},{cartData:userData.cartData})
-  res.send("Added ")
-})
+//creating an endpoint for adding products to cart
+app.post("/addtocart", fetchUser, async (req, res) => {
+  let userData = await Users.findOne({ _id: req.user.id });
+  userData.cartData[req.body.itemId] += 1;
+  await Users.findByIdAndUpdate(
+    { _id: req.user.id },
+    { cartData: userData.cartData }
+  );
+  res.send("Added ");
+});
 
 //creating an endpoint for removing a product from cart
 app.post("/removefromcart", fetchUser, async (req, res) => {
-  console.log("removed",req.body.itemId);
+  console.log("removed", req.body.itemId);
   let userData = await Users.findOne({ _id: req.user.id });
-  if (userData.cartData[req.body.itemId]>0)
+  if (userData.cartData[req.body.itemId] > 0)
     userData.cartData[req.body.itemId] -= 1;
   await Users.findByIdAndUpdate(
     { _id: req.user.id },
@@ -261,14 +269,13 @@ app.post("/removefromcart", fetchUser, async (req, res) => {
 app.post("/getcart", fetchUser, async (req, res) => {
   console.log("get cart");
   let userData = await Users.findOne({ _id: req.user.id });
- res.json(userData.cartData)
+  res.json(userData.cartData);
 });
 
-app.listen(port,async (error) => {
+app.listen(port, async (error) => {
   if (!error) {
     console.log("Server running on port" + port);
   } else {
     console.log("error : " + error);
   }
-  
 });

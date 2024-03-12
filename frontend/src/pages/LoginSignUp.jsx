@@ -17,7 +17,7 @@ const LoginSignUp = () => {
     console.log("login");
     console.log(formData);
     let responseData;
-    await fetch("https://shy-worm-stole.cyclic.app//login", {
+    await fetch("https://localhost:4000//login", {
       method: "POST",
       headers: {
         Accept: "application/form-data",
@@ -39,7 +39,7 @@ const LoginSignUp = () => {
     console.log("signup");
     console.log(formData);
     let responseData;
-    await fetch("https://shy-worm-stole.cyclic.app//signup", {
+    await fetch("https://localhost:4000//signup", {
       method: "POST",
       headers: {
         Accept: "application/form-data",

@@ -6,7 +6,7 @@ const ListProduct = () => {
   const [allProducts, setallProducts] = useState([]);
 
   const fetchProducts = async () => {
-    await fetch("https://shy-worm-stole.cyclic.app//allproducts")
+    await fetch("https://localhost:4000//allproducts")
       .then((res) => res.json())
       .then((data) => {
         setallProducts(data);
@@ -19,7 +19,7 @@ const ListProduct = () => {
   }, []);
 
   const removeProduct = async (id) => {
-    await fetch("https://shy-worm-stole.cyclic.app//removeproduct", {
+    await fetch("https://localhost:4000//removeproduct", {
       method: "POST",
       headers: {
         Accept: "application/json",

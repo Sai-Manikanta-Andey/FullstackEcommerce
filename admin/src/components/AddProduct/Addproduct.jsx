@@ -27,7 +27,7 @@ const Addproduct = () => {
     let formData = new FormData();
     formData.append("product", image);
 
-    await fetch("https://shy-worm-stole.cyclic.app//upload", {
+    await fetch("https://localhost:4000//upload", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -42,7 +42,7 @@ const Addproduct = () => {
     if (responseData.success) {
       product.image = responseData.image_url;
       console.log(product);
-      await fetch("https://shy-worm-stole.cyclic.app//addproduct", {
+      await fetch("https://localhost:4000//addproduct", {
         method: "POST",
         headers: {
           Accept: "application/json",

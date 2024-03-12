@@ -15,14 +15,14 @@ const ShopContextProvider = (props) => {
   const [cartItems, setCartItems] = useState(getDefaultCart());
 
   useEffect(() => {
-    fetch("https://shy-worm-stole.cyclic.app/allproducts")
+    fetch("http://localhost:4000/allproducts")
       .then((res) => res.json())
       .then((data) => {
         setAllproduct(data);
       });
 
     if (localStorage.getItem("auth-token")) {
-      fetch("https://shy-worm-stole.cyclic.app/getcart", {
+      fetch("http://localhost:4000/getcart", {
         method: "POST",
         headers: {
           Accept: "application/form-data",
@@ -39,7 +39,7 @@ const ShopContextProvider = (props) => {
   const addToCart = (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
     if (localStorage.getItem("auth-token")) {
-      fetch("https://shy-worm-stole.cyclic.app/addtocart", {
+      fetch("http://localhost:4000/addtocart", {
         method: "POST",
         headers: {
           Accept: "application/form-data",
@@ -55,7 +55,7 @@ const ShopContextProvider = (props) => {
   const removeFromCart = (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
     if (localStorage.getItem("auth-token")) {
-      fetch("https://shy-worm-stole.cyclic.app/removefromcart", {
+      fetch("http://localhost:4000/removefromcart", {
         method: "POST",
         headers: {
           Accept: "application/form-data",
