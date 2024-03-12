@@ -6,7 +6,7 @@ const NewCollections = () => {
   const [new_collection, setNewCollection] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:4000/newcollections")
+    fetch("https://tender-plum-greyhound.cyclic.app/newcollections")
       .then((res) => res.json())
       .then((data) => setNewCollection(data));
   }, []);
