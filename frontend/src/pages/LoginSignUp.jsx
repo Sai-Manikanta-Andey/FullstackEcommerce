@@ -17,7 +17,7 @@ const LoginSignUp = () => {
     console.log("login");
     console.log(formData);
     let responseData;
-    await fetch("https://localhost:4000//login", {
+    await fetch("https://tender-plum-greyhound.cyclic.app/login", {
       method: "POST",
       headers: {
         Accept: "application/form-data",
@@ -39,7 +39,7 @@ const LoginSignUp = () => {
     console.log("signup");
     console.log(formData);
     let responseData;
-    await fetch("https://localhost:4000//signup", {
+    await fetch("https://tender-plum-greyhound.cyclic.app/signup", {
       method: "POST",
       headers: {
         Accept: "application/form-data",
