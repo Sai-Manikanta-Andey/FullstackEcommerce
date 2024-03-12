@@ -13,7 +13,7 @@ app.use(express.json());
 const corsOptions = {
   origin: [
     "http://localhost:5173",
-    "https://fullstack-ecommerce-sooty.vercel.app/",
+    "https://fullstack-ecommerce-sooty.vercel.app",
   ],
 };
 app.use(cors(corsOptions));
