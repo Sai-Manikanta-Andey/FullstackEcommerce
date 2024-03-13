@@ -146,23 +146,23 @@
     .hero{
         flex-direction: column;
     }
-    .hero-left {
-        padding-left: 100px;
-    }
+    
 
     .hero-left h2 {
         font-size: 1.2rem;
     }
 
     .hero-left p {
-        font-size: 3rem;
+        font-size: 2rem;
     }
 
     .hero-hand-icon img {
         width: 55px;
+        
     }
 
     .hero-right img {
-        display: none;
+        width: 200px;
+        height: 300px;
     }
 }
