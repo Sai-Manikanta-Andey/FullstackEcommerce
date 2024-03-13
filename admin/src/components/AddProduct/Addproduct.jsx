@@ -27,7 +27,7 @@ const Addproduct = () => {
     let formData = new FormData();
     formData.append("product", image);
 
-    await fetch("https://localhost:4000//upload", {
+    await fetch("https://tender-plum-greyhound.cyclic.app/upload", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -42,7 +42,7 @@ const Addproduct = () => {
     if (responseData.success) {
       product.image = responseData.image_url;
       console.log(product);
-      await fetch("https://localhost:4000//addproduct", {
+      await fetch("https://tender-plum-greyhound.cyclic.app/addproduct", {
         method: "POST",
         headers: {
           Accept: "application/json",
