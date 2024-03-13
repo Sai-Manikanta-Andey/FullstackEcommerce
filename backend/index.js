@@ -12,7 +12,7 @@ dotenv.config();
 app.use(express.json());
 const corsOptions = {
   origin: [
-    "http://localhost:5173",
+    "http://localhost:5173","https://fullstack-ecommerce-i476.vercel.app",
     "https://fullstack-ecommerce-sooty.vercel.app",
   ],
 };
