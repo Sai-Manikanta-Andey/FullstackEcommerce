@@ -15,14 +15,14 @@ const ShopContextProvider = (props) => {
   const [cartItems, setCartItems] = useState(getDefaultCart());
 
   useEffect(() => {
-    fetch("https://tender-plum-greyhound.cyclic.app/allproducts")
+    fetch("https://good-erin-gosling-wig.cyclic.app/allproducts")
       .then((res) => res.json())
       .then((data) => {
         setAllproduct(data);
       });
 
     if (localStorage.getItem("auth-token")) {
-      fetch("https://tender-plum-greyhound.cyclic.app/getcart", {
+      fetch("https://good-erin-gosling-wig.cyclic.app/getcart", {
         method: "POST",
         headers: {
           Accept: "application/form-data",
@@ -39,7 +39,7 @@ const ShopContextProvider = (props) => {
   const addToCart = (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
     if (localStorage.getItem("auth-token")) {
-      fetch("https://tender-plum-greyhound.cyclic.app/addtocart", {
+      fetch("https://good-erin-gosling-wig.cyclic.app/addtocart", {
         method: "POST",
         headers: {
           Accept: "application/form-data",
@@ -55,7 +55,7 @@ const ShopContextProvider = (props) => {
   const removeFromCart = (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
     if (localStorage.getItem("auth-token")) {
-      fetch("https://tender-plum-greyhound.cyclic.app/removefromcart", {
+      fetch("https://good-erin-gosling-wig.cyclic.app/removefromcart", {
         method: "POST",
         headers: {
           Accept: "application/form-data",

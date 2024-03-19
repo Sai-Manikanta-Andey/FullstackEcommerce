@@ -7,7 +7,7 @@ const Popular = () => {
   const [data_product, setNewDataProduct] = useState([]);
 
   useEffect(() => {
-    fetch("https://tender-plum-greyhound.cyclic.app/popularinwomen")
+    fetch("https://good-erin-gosling-wig.cyclic.app/popularinwomen")
       .then((res) => res.json())
       .then((data) => setNewDataProduct(data));
   }, []);

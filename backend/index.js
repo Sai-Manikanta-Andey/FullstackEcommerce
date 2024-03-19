@@ -10,9 +10,11 @@ const cors = require("cors");
 
 dotenv.config();
 app.use(express.json());
+const deployed_url_backend = "https://good-erin-gosling-wig.cyclic.app";
 const corsOptions = {
   origin: [
-    "http://localhost:5173","https://fullstack-ecommerce-i476.vercel.app",
+    "http://localhost:5173",deployed_url_backend,
+    "https://fullstack-ecommerce-i476.vercel.app",
     "https://fullstack-ecommerce-sooty.vercel.app",
   ],
 };
@@ -24,6 +26,25 @@ mongoose.connect(
   `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.xslsgb9.mongodb.net/ecommerce`
 );
 
+mongoose.connection.once("open", async () => {
+  try {
+    const documents = await Product.find({}); // Replace YourModel with your actual Mongoose model
+
+    // Update each document with the correct image URL
+    for (const document of documents) {
+      document.image = document.image.replace(
+        "https://tender-plum-greyhound.cyclic.app",
+        "https://good-erin-gosling-wig.cyclic.app"
+      );
+      await document.save();
+    }
+
+    console.log("URLs updated successfully.");
+    mongoose.disconnect();
+  } catch (error) {
+    console.error("Error updating URLs:", error);
+  }
+});
 //API creation
 
 app.get("/", (req, res) => {
@@ -49,7 +70,7 @@ app.use("/images", express.static("upload/images"));
 app.post("/upload", upload.single("product"), (req, res) => {
   res.json({
     success: 1,
-    image_url: `https://tender-plum-greyhound.cyclic.app/images/${req.file.filename}`,
+    image_url: `${deployed_url_backend}/images/${req.file.filename}`,
   });
 });
 
