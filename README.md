@@ -56,6 +56,6 @@ This project is a full-stack e-commerce application built with React.js for the 
 2. **Install packages**:
    ```bash
      npm i   
-3. **Running the frontend**
+3. **Running the backend**
    ```bash
    npm start
